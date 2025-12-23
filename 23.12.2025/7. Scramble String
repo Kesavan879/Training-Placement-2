@@ -1,0 +1,29 @@
+class Solution {
+    public boolean isScrambleUtil(boolean visited[][][], boolean dp[][][], String s1, String s2,int start1,int start2,int l) {
+        if (visited[start1][start2][l]) return dp[start1][start2][l];
+        visited[start1][start2][l] = true;
+        if (l==1) {
+            return dp[start1][start2][l] = s1.charAt(start1) == s2.charAt(start2);
+        }
+        for (int x= 1;x<l;x++){
+            int y = l - x;
+            //match with front
+            if( isScrambleUtil(visited,dp,s1,s2,start1,start2,x) && 
+            isScrambleUtil(visited,dp,s1,s2,start1 + x,start2 + x,y)) {
+                return dp[start1][start2][l] = true;
+            }
+            //match with back
+            if( isScrambleUtil(visited,dp,s1,s2,start1,start2 + y,x) && 
+            isScrambleUtil(visited,dp,s1,s2,start1 + x,start2,y)) {
+                return dp[start1][start2][l] = true;
+            }
+        }
+        return false;
+    };
+    public boolean isScramble(String s1, String s2) {
+        int n = s1.length();
+        boolean visited[][][] = new boolean[n][n][n+1];
+        boolean dp[][][] = new boolean[n][n][n+1];
+        return isScrambleUtil(visited,dp,s1,s2,0,0,n);
+    }
+}
