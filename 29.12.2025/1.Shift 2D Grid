@@ -1,0 +1,37 @@
+class Solution(object):
+    def shiftGrid(self, grid, k):
+        """
+        :type grid: List[List[int]]
+        :type k: int
+        :rtype: List[List[int]]
+        """
+        flat = []
+        for i in grid:
+            for j in i:
+                flat += [j]
+        #print flat
+        for n in range(k):
+            #flat = flat[1:] + [flat[0]]
+            #flat = [flat[-1]] + flat[:-1] # cheating
+            temp = flat[-1]
+            temp2 = flat[:-1]
+            flat = []
+            flat.append(temp)
+            for x in temp2:
+                flat.append(x)
+            #flat = [temp] + [x for x in temp2]
+        #print flat
+        rows = len(grid)
+        cols = len(grid[0])
+        #print rows
+        #print cols
+        ret = []
+        index = 0
+        for a in range(rows):
+            temp = []
+            for b in range(cols):
+                temp.append(flat[index])
+                index += 1
+            ret.append(temp)
+        #print ret
+        return ret
