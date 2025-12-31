@@ -1,0 +1,17 @@
+class Solution(object):
+    def numIdenticalPairs(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        freq = {}   # to store frequency of each value
+        pairs = 0   # to count number of good pairs
+
+        for num in nums:
+            freq[num] = freq.get(num, 0) + 1  # counts frequencies
+
+        for k in freq.keys():
+            if freq[k] > 1:
+                pairs += freq[k] * (freq[k] - 1) // 2 # formula to count good pairs
+
+        return pairs
