@@ -1,0 +1,34 @@
+class Solution(object):
+    def canFormArray(self, arr, pieces):
+        """
+        :type arr: List[int] - Target array to be formed.
+        :type pieces: List[List[int]] - List of integer arrays to concatenate.
+        :rtype: bool - True if arr can be formed, otherwise False.
+        """
+        # Create a dictionary to map the first element of each piece to the piece itself.
+        # This allows quick lookup of pieces based on the first element.
+        piece_map = {p[0]: p for p in pieces}
+
+        # Initialize index pointer for traversing the arr array.
+        i = 0
+        # Traverse the arr array element by element.
+        while i < len(arr):
+            # Check if the current element in arr exists as a key in the dictionary.
+            if arr[i] not in piece_map:
+                # If the current element does not match any piece's starting element, return False.
+                return False
+
+            # Retrieve the corresponding piece using the current element as the key.
+            piece = piece_map[arr[i]]
+            # Check if the entire piece matches the sequence in arr starting at index i.
+            for num in piece:
+                # Ensure we are within bounds and the elements match.
+                if i < len(arr) and arr[i] == num:
+                    # Move the index forward if elements match.
+                    i += 1
+                else:
+                    # If there is a mismatch, return False immediately.
+                    return False
+        
+        # If all elements in arr have been successfully matched, return True.
+        return True
