@@ -1,0 +1,26 @@
+class Solution(object):
+    def halvesAreAlike(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        a=s[:len(s)//2]
+        b=s[len(s)//2:]
+        vowel_lower=['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']
+        vowela=0
+        vowelA=0
+        vowelB=0
+        vowelb=0
+        for i in a:
+            if i in vowel_lower:
+                vowela=vowela+1
+            
+        for j in b:
+            if j in vowel_lower:
+                vowelb=vowelb+1
+            
+        if vowela == vowelb:
+            return True
+        else:
+            return False
+                
