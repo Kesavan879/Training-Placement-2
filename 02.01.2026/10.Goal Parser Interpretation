@@ -1,0 +1,9 @@
+class Solution(object):
+    def interpret(self, command):
+        if  "(al)" in command:
+            command=command.replace("(al)","al")
+        if  "G" in command:
+            command=command.replace("G","G")
+        if  "()" in command:
+            command=command.replace("()","o")
+        return command
