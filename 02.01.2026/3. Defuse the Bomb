@@ -1,0 +1,24 @@
+class Solution(object):
+    def decrypt(self, code, k):
+        """
+        :type code: List[int]
+        :type k: int
+        :rtype: List[int]
+        """
+        if k==0:
+            return [0]*len(code)
+        a = code * 2 
+        negative=False
+        if k<0:
+            k=k - k * 2
+            a=a[::-1]
+            negative=True
+        Window=sum(a[1:(k+1)])
+        result=[]
+        result.append(Window)
+        for i in range(1,len(code)):
+            Window  += a[i+k] - a[i]
+            result.append(Window)
+        if negative:
+            return result[::-1]
+        return result
