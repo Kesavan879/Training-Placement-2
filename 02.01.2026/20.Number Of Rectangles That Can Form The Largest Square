@@ -1,0 +1,8 @@
+class Solution(object):
+    def countGoodRectangles(self, rectangles):
+        """
+        :type rectangles: List[List[int]]
+        :rtype: int
+        """
+        square = [min(i) for i in rectangles]
+        return square.count(max(square))
