@@ -1,0 +1,17 @@
+class Solution(object):
+    def getMaximumGenerated(self, n):
+        if n==0:
+            return 0
+        else:
+            x=[0]*(n+1)
+            x[1]=1
+        for i in range(2,n+1):
+            if i%2==0:
+                x[i]=x[i//2]
+            else:
+                x[i]=x[i//2]+x[i//2+1]
+        return max(x)
+            
+
+        
+        
