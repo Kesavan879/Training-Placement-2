@@ -1,0 +1,33 @@
+class Solution {
+    public boolean checkValid(int[][] matrix) {
+        int n = matrix.length;
+
+        int[] row = new int[n]; // row[x] indicates that occurence of x in that row
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                row[matrix[i][j] - 1]++;
+            }
+
+            // at the end of this row: all row[v] must be i // count
+            for (int j = 0; j < n; j++) {
+                if (row[j] != i+1) 
+                    return false;
+            }
+        }
+
+        int[] col = new int[n]; // col[x] indicates that occurence of x in that row
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                col[matrix[j][i] - 1]++;
+            }
+
+            // at the end of this row: all row[v] must be i // count
+            for (int j = 0; j < n; j++) {
+                if (col[j] != i+1) 
+                    return false;
+            }
+        }
+
+        return true;
+    }
+}
