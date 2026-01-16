@@ -1,0 +1,19 @@
+class Solution {
+    public int minimumRecolors(String blocks, int k) {
+        // the problem equals "find the min number of white blocks among all k consecutive blocks"
+        int min  = 0; // min number of white blocks we want to find
+        int cur = 0; // current number of white blocks in the current k consecutive blocks 
+        for (int i = 0; i < k; i++) {
+            cur += blocks.charAt(i) == 'W' ? 1 : 0;
+        } // the first k consecutive blocks 
+        min = cur;
+        for (int i = k; i < blocks.length(); i++) {
+            cur += blocks.charAt(i) == 'W' ? 1 : 0;
+            cur -= blocks.charAt(i - k) == 'W' ? 1 : 0;
+            min = Math.min(min, cur);// update min
+        }
+        return min;
+    }
+}
+// tc: n
+// sc: 1
