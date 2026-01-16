@@ -1,0 +1,16 @@
+class Solution {
+    public int countAsterisks(String s) {
+            int l=0;
+            int count=0;
+
+        for(char c : s.toCharArray()){
+            if(l%2==0){
+                if(c=='*') count++;
+            }
+            if(c=='|')
+            l++;
+            
+        }
+        return count;    
+    }
+}
