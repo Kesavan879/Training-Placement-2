@@ -1,0 +1,20 @@
+class Solution {
+    public boolean findSubarrays(int[] nums) {
+        // input validation
+        if(nums.length < 2) {
+            return false;
+        }
+
+        Set<Integer> visited = new HashSet<Integer>();
+
+        for (int i = 0; i < nums.length - 1; i++) {
+            Integer sum = nums[i] + nums[i+1];
+            if(visited.contains(sum)) {
+                return true;
+            }
+            visited.add(sum);
+        }
+
+        return false;
+    }
+}
