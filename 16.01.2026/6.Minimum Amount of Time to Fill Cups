@@ -1,0 +1,23 @@
+class Solution {
+    public int fillCups(int[] amount) {
+        PriorityQueue<Integer> heap = new PriorityQueue<>(Collections.reverseOrder());
+        // Arrays.sort(amount, Collections.reverseOrder());
+        for(int n: amount) {
+            if(n != 0) heap.add(n);
+        }
+        int time = 0;
+        while(!heap.isEmpty()) {
+            int x = heap.remove();
+            x--;
+            int y = 0;
+            if(!heap.isEmpty()) {
+                y = heap.remove();
+                y--;
+            }
+            time++;
+            if(x != 0) heap.add(x);
+            if(y != 0) heap.add(y);
+        }
+        return time;
+    }
+}
